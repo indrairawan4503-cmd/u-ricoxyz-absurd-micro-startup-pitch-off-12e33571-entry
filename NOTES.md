@@ -26,3 +26,14 @@ hyper-specific good (expiring free-tier API credits), a named buyer moment
 fit stated outright (the broker matches while everyone naps). v6–v8 prove the
 only way to make the fee verb punchier is to exceed the gate, so v5 is the
 max-punch version inside it. 198 chars, no trailing newline, ASCII only.
+
+## Post-build revision (24 Nov)
+
+main.py gained a `validate_pitch()` gate check, run before any writing:
+the pitch must be non-empty/non-whitespace, a single line, and ≤200 chars,
+else it exits 1 with a clear stderr error. The pitch text itself is
+unchanged (still the 198-char v5 sentence) and the /output-first + best-
+effort repo-root copy in try/except is untouched. Verified: two runs
+byte-identical (198 bytes), read-only grader simulation exits 0, and the
+gate rejects empty/whitespace/multi-line/201-char pitches while accepting
+the real one.
